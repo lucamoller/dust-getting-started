@@ -72,7 +72,7 @@ pub fn App() -> impl IntoView {
     log!("Rendering App...");
     // Provides context that manages stylesheets, titles, meta tags, etc.
     provide_meta_context();
-    MyState::provide_and_initiaze_context();
+    MyState::provide_and_initialize_context();
 
     let state = MyState::expect_context();
 

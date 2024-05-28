@@ -1106,9 +1106,7 @@ dependencies = [
 
 [[package]]
 name = "lucamoller_dust"
-version = "0.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fa33720fd0c1bdb94635c02f6f3e3296a780e8890170b4bb5baeb0217f3510b3"
+version = "0.1.2"
 dependencies = [
  "axum",
  "console_error_panic_hook",
@@ -1129,9 +1127,7 @@ dependencies = [
 
 [[package]]
 name = "lucamoller_dust_macro"
-version = "0.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bdc6adefa7a5e5cebda7397d963a4da563737a205c0dd9c391ce1323d95fc669"
+version = "0.1.2"
 dependencies = [
  "convert_case",
  "derivative",
