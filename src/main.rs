@@ -1,4 +1,4 @@
-use dust_leptos_single::app::App;
+use dust_getting_started::app::App;
 
 dust::dust_main!(App);
 

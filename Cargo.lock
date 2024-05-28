@@ -428,7 +428,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "669a445ee724c5c69b1b06fe0b63e70a1c84bc9bb7d9696cd4f4e3ec45050408"
 
 [[package]]
-name = "dust-leptos-single"
+name = "dust-getting-started"
 version = "0.1.0"
 dependencies = [
  "leptos",
@@ -1106,9 +1106,9 @@ dependencies = [
 
 [[package]]
 name = "lucamoller_dust"
-version = "0.1.0"
+version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "540d260e5add3fe99dc3c144f020ac1d53f8142ba01ddfc2e30b279e41ea617b"
+checksum = "fa33720fd0c1bdb94635c02f6f3e3296a780e8890170b4bb5baeb0217f3510b3"
 dependencies = [
  "axum",
  "console_error_panic_hook",
@@ -1129,9 +1129,9 @@ dependencies = [
 
 [[package]]
 name = "lucamoller_dust_macro"
-version = "0.1.0"
+version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3a4369e81afa8d256468ec4ad5168d34f09fa7f779b7209f8e93d66ebda2f912"
+checksum = "bdc6adefa7a5e5cebda7397d963a4da563737a205c0dd9c391ce1323d95fc669"
 dependencies = [
  "convert_case",
  "derivative",

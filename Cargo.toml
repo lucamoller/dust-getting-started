@@ -1,5 +1,5 @@
 [package]
-name = "dust-leptos-single"
+name = "dust-getting-started"
 version = "0.1.0"
 edition = "2021"
 
@@ -8,7 +8,7 @@ crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 # dust = { path = "../dust/dust", package = "lucamoller_dust"}
-dust = { version = "0.1.0", package = "lucamoller_dust"}
+dust = { version = "0.1", package = "lucamoller_dust"}
 
 # We need to include these crates directly because their macros are used within dust's macros.
 # Apparently there's no way around this: https://github.com/serde-rs/serde/issues/1465#issuecomment-458415989
