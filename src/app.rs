@@ -2,7 +2,7 @@
 use dust::leptos::logging::log;
 use dust::leptos::*;
 use dust::leptos_meta::*;
-use dust::{dust_define_callback, DustState, Input, Output};
+use dust::{dust_define_server_callback, DustState, Input, Output};
 
 #[derive(Clone, DustState)]
 #[dust_register_callback(update_sum)]
@@ -32,27 +32,27 @@ impl Default for MyState {
     }
 }
 
-#[dust_define_callback(MyState)]
+#[dust_define_server_callback(MyState)]
 fn update_sum(value1: Input<i32>, value2: Input<i32>, sum: &mut Output<i32>) {
     sum.set(value1.value + value2.value);
 }
 
-#[dust_define_callback(MyState)]
+#[dust_define_server_callback(MyState)]
 fn print_sum(sum: Input<i32>) {
     println!("new sum {}", sum.value);
 }
 
-#[dust_define_callback(MyState)]
+#[dust_define_server_callback(MyState)]
 fn update_sum_of_squares(value1: Input<i32>, value2: Input<i32>, sum_of_squares: &mut Output<i32>) {
     sum_of_squares.set(value1.value * value1.value + value2.value * value2.value);
 }
 
-#[dust_define_callback(MyState)]
+#[dust_define_server_callback(MyState)]
 fn update_squared_sum(sum: Input<i32>, squared_sum: &mut Output<i32>) {
     squared_sum.set(sum.value * sum.value);
 }
 
-#[dust_define_callback(MyState)]
+#[dust_define_server_callback(MyState)]
 fn update_text_summary(
     value1: Input<i32>,
     value2: Input<i32>,
