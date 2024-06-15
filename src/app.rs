@@ -2,7 +2,7 @@
 use dust::leptos::logging::log;
 use dust::leptos::*;
 use dust::leptos_meta::*;
-use dust::{dust_define_server_callback, DustState, Input, Output};
+use dust::{dust_define_client_callback, dust_define_server_callback, DustState, Input, Output};
 
 #[derive(Clone, DustState)]
 #[dust_register_callback(update_sum)]
@@ -52,7 +52,7 @@ fn update_squared_sum(sum: Input<i32>, squared_sum: &mut Output<i32>) {
     squared_sum.set(sum.value * sum.value);
 }
 
-#[dust_define_server_callback(MyState)]
+#[dust_define_client_callback(MyState)]
 fn update_text_summary(
     value1: Input<i32>,
     value2: Input<i32>,
