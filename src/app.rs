@@ -2,9 +2,10 @@
 use dust::leptos::logging::log;
 use dust::leptos::*;
 use dust::leptos_meta::*;
-use dust::{dust_define_client_callback, dust_define_server_callback, DustState, Input, Output};
+use dust::{dust_define_client_callback, dust_define_server_callback, DustState, Input, Output, State};
 
 #[derive(Clone, DustState)]
+#[dust_register_callback(update_value1_multiplied)]
 #[dust_register_callback(update_sum)]
 #[dust_register_callback(print_sum)]
 #[dust_register_callback(update_sum_of_squares)]
@@ -12,6 +13,8 @@ use dust::{dust_define_client_callback, dust_define_server_callback, DustState, 
 #[dust_register_callback(update_text_summary)]
 pub struct MyState {
     pub value1: i32,
+    pub value1_multiplier: i32,
+    pub value1_multiplied: i32,
     pub value2: i32,
     pub sum: i32,
     pub sum_of_squares: i32,
@@ -23,6 +26,8 @@ impl Default for MyState {
     fn default() -> MyState {
         MyState {
             value1: 1,
+            value1_multiplier: 1,
+            value1_multiplied: 1,
             value2: 1,
             sum: 0,
             sum_of_squares: 0,
@@ -33,8 +38,13 @@ impl Default for MyState {
 }
 
 #[dust_define_server_callback(MyState)]
-fn update_sum(value1: Input<i32>, value2: Input<i32>, sum: &mut Output<i32>) {
-    sum.set(value1.value + value2.value);
+fn update_value1_multiplied(value1: Input<i32>, value1_multiplier: State<i32>, value1_multiplied: &mut Output<i32>) {
+    value1_multiplied.set(value1.value * value1_multiplier.value);
+}
+
+#[dust_define_server_callback(MyState)]
+fn update_sum(value1_multiplied: Input<i32>, value2: Input<i32>, sum: &mut Output<i32>) {
+    sum.set(value1_multiplied.value + value2.value);
 }
 
 #[dust_define_server_callback(MyState)]
@@ -43,8 +53,8 @@ fn print_sum(sum: Input<i32>) {
 }
 
 #[dust_define_server_callback(MyState)]
-fn update_sum_of_squares(value1: Input<i32>, value2: Input<i32>, sum_of_squares: &mut Output<i32>) {
-    sum_of_squares.set(value1.value * value1.value + value2.value * value2.value);
+fn update_sum_of_squares(value1_multiplied: Input<i32>, value2: Input<i32>, sum_of_squares: &mut Output<i32>) {
+    sum_of_squares.set(value1_multiplied.value * value1_multiplied.value + value2.value * value2.value);
 }
 
 #[dust_define_server_callback(MyState)]
@@ -55,6 +65,8 @@ fn update_squared_sum(sum: Input<i32>, squared_sum: &mut Output<i32>) {
 #[dust_define_client_callback(MyState)]
 fn update_text_summary(
     value1: Input<i32>,
+    value1_multiplier: State<i32>,
+    value1_multiplied: Input<i32>,
     value2: Input<i32>,
     sum: Input<i32>,
     sum_of_squares: Input<i32>,
@@ -62,8 +74,8 @@ fn update_text_summary(
     text_summary: &mut Output<String>,
 ) {
     text_summary.set(format!(
-        "value1: {}, value2: {}, sum: {}, sum_of_squares: {}, squared_sum: {}",
-        value1.value, value2.value, sum.value, sum_of_squares.value, squared_sum.value
+        "value1: {}, value1_multiplier: {}, value1_multiplied: {}, value2: {}, sum: {}, sum_of_squares: {}, squared_sum: {}",
+        value1.value, value1_multiplier.value, value1_multiplied.value, value2.value, sum.value, sum_of_squares.value, squared_sum.value
     ));
 }
 
@@ -87,6 +99,9 @@ pub fn App() -> impl IntoView {
         <h1>"Welcome to Dust!"</h1>
         <button on:click=state.increment_onclick_value1()>"Increment value1: " {state.value1}</button>
         <button on:click=state.increment_onclick_value2()>"Increment value2: " {state.value2}</button>
+        <button on:click=state.increment_onclick_value1_multiplier()>
+            "Increment value1_multiplier (don't apply immediately): " {state.value1_multiplier}
+        </button>
         <p> Summary: {state.text_summary} </p>
     }
 }
